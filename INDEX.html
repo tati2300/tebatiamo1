@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Amo Cesia</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #fdf6f0, #ffdde1);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      cursor: pointer;
+      position: relative;
+    }
+
+    h1 {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 4em;
+      color: #e91e63;
+      animation: pulse 2s infinite;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.1); }
+    }
+
+    .flower {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      pointer-events: none;
+      animation: float 6s linear forwards;
+      z-index: 5;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(-50%, -50%) translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) translateY(-200px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    svg {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 200px;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Tulipán en SVG -->
+  <svg viewBox="0 0 100 200">
+    <!-- Tallo -->
+    <line x1="50" y1="80" x2="50" y2="200" stroke="green" stroke-width="4"/>
+    <!-- Hojas -->
+    <path d="M50 130 Q30 140 40 160" fill="green"/>
+    <path d="M50 130 Q70 140 60 160" fill="green"/>
+    <!-- Tulipán -->
+    <path d="M40 80 Q50 60 60 80 Q55 70 50 85 Q45 70 40 80" fill="#e91e63"/>
+  </svg>
+
+  <!-- Script para crear flores visuales SVG -->
+  <script>
+    function createFlower(x, y) {
+      const flower = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      flower.setAttribute("class", "flower");
+      flower.setAttribute("viewBox", "0 0 100 100");
+      flower.style.left = `${x}px`;
+      flower.style.top = `${y}px`;
+
+      // pétalos
+      for (let i = 0; i < 6; i++) {
+        const petal = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+        petal.setAttribute("cx", 50);
+        petal.setAttribute("cy", 30);
+        petal.setAttribute("rx", 10);
+        petal.setAttribute("ry", 25);
+        petal.setAttribute("fill", "#f06292");
+        petal.setAttribute("transform", `rotate(${i * 60} 50 50)`);
+        flower.appendChild(petal);
+      }
+
+      // centro
+      const center = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      center.setAttribute("cx", 50);
+      center.setAttribute("cy", 50);
+      center.setAttribute("r", 8);
+      center.setAttribute("fill", "#ffca28");
+      flower.appendChild(center);
+
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 6000);
+    }
+
+    document.body.addEventListener("click", function(e) {
+      createFlower(e.clientX, e.clientY);
+    });
+
+  </script>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to top, #fdf6f0, #ffdde1);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 4em;
+      color: #e91e63;
+      animation: pulse 2s infinite;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .center-flower {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 align="center">TE AMO CESIA</h1>
+
+  <!-- Flor central fija SVG -->
+  <svg class="center-flower" viewBox="0 0 100 100">
+    <!-- pétalos -->
+    <g>
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(0 50 50)" />
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(60 50 50)" />
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(120 50 50)" />
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(180 50 50)" />
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(240 50 50)" />
+      <ellipse cx="50" cy="30" rx="15" ry="30" fill="#f06292" transform="rotate(300 50 50)" />
+    </g>
+
+    <!-- centro -->
+    <circle cx="50" cy="50" r="10" fill="#ffca28" />
+  </svg>
+
+</body>
+</html>
